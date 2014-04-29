@@ -31,16 +31,16 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "edf1194d7bc99b64dca177deecade9e13f0a8c3339c9fd8832471a2e7ed1dda5",
+      "iso_checksum": "3aeb42816253355394897ae80d99a9ba56217c0e98e05294b51f0f5b13bceb54",
       "iso_checksum_type": "sha256",
-      "iso_url": "http://releases.ubuntu.com/13.04/ubuntu-13.04-server-amd64.iso",
+      "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-amd64.iso",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
-      "vm_name": "ubuntu-13.04-server-amd64",
+      "vm_name": "ubuntu-12.04.4-server-amd64",
       "vboxmanage": [
         ["modifyvm", "{{.Name}}", "--memory", "256"],
         ["modifyvm", "{{.Name}}", "--cpus", "1"]
@@ -77,9 +77,9 @@
       "guest_os_type": "ubuntu-64",
       "headless": false,
       "http_directory": "http",
-      "iso_checksum": "edf1194d7bc99b64dca177deecade9e13f0a8c3339c9fd8832471a2e7ed1dda5",
+      "iso_checksum": "3aeb42816253355394897ae80d99a9ba56217c0e98e05294b51f0f5b13bceb54",
       "iso_checksum_type": "sha256",
-      "iso_url": "http://releases.ubuntu.com/13.04/ubuntu-13.04-server-amd64.iso",
+      "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-amd64.iso",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -87,7 +87,7 @@
       "ssh_wait_timeout": "10000s",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
-      "vm_name": "ubuntu-13.04-server-amd64",
+      "vm_name": "ubuntu-12.04.4-server-amd64",
       "vmx_data": {
         "cpuid.coresPerSocket": "1",
         "memsize": "256",
@@ -97,7 +97,7 @@
   ],
   "post-processors": [
     {
-      "output": "ubuntu-13.04-server-amd64_{{.Provider}}.box",
+      "output": "ubuntu-12.04.4-server-amd64_{{.Provider}}.box",
       "type": "vagrant"
     }
   ],

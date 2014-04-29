@@ -1,2 +1,2 @@
+packer_cache/
 *.box
-*/*/packer_cache/*
