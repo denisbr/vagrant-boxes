@@ -23,9 +23,9 @@
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
-      "iso_checksum": "f28a2b6d65f93acc505f83368392ac3568934462d4cf793e0b34da3374d05cc2cf7744f8e6f2b0f7261bf3150fb879ee2d4a09b1828578667a05fc1db7578b47",
+      "iso_checksum": "0a86e2fdef365f8bd626de7e754189291174b86a312c655fa6585eec3c6e5caa5e8f128e37a6989ae8d45743e158191d1b178d76bf338cb4512f0ee4aa9cda3c",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-netinst.iso",
+      "iso_url": "http://ftp.acc.umu.se/cdimage/release/7.5.0/amd64/iso-cd/debian-7.5.0-amd64-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -33,12 +33,10 @@
       "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "debian-6.0.9-amd64",
+      "vm_name": "debian-7.5.0-amd64",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "256" ],
-        [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
-        [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ],
-        [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ]
+        [ "modifyvm", "{{.Name}}", "--memory", "384" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
       ]
     },
     {
@@ -64,19 +62,19 @@
       "disk_size": 10140,
       "guest_os_type": "debian7-64",
       "http_directory": "http",
-      "iso_checksum": "f28a2b6d65f93acc505f83368392ac3568934462d4cf793e0b34da3374d05cc2cf7744f8e6f2b0f7261bf3150fb879ee2d4a09b1828578667a05fc1db7578b47",
+      "iso_checksum": "db79d463072da26b91c14e08b5a77a77bec9476ad1e5b0d2241228e4d59233f12c74477e77d427e407e1f45da4d2414c76367554352f57480fc7c00dde164028",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-netinst.iso",
+      "iso_url": "http://cdimage.debian.org/cdimage/release/7.5.0/amd64/iso-cd/debian-7.5.0-amd64-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
       "tools_upload_flavor": "linux",
-      "vm_name": "debian-6.0.9-amd64",
+      "vm_name": "debian-7.5.0-amd64",
       "vmx_data": {
-        "memsize": "256",
-        "numvcpus": "1",
+        "memsize": "384",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "1"
       }
     }
@@ -85,7 +83,7 @@
     {
       "type": "vagrant",
       "compression_level": "9",
-      "output": "debian-6.0.9-amd64_{{.Provider}}.box"
+      "output": "debian-7.5.0-amd64_{{.Provider}}.box"
     }
   ],
   "provisioners": [
@@ -99,9 +97,6 @@
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
         "scripts/vmtools.sh",
-        "scripts/ruby.sh",
-        "scripts/puppet.sh",
-        "scripts/chef.sh",
         "scripts/cleanup.sh"
       ]
     }

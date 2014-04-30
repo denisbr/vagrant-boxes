@@ -99,9 +99,6 @@
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
         "scripts/vmtools.sh",
-        "scripts/ruby.sh",
-        "scripts/puppet.sh",
-        "scripts/chef.sh",
         "scripts/cleanup.sh"
       ]
     }
