@@ -83,7 +83,7 @@
     {
       "type": "vagrant",
       "compression_level": "9",
-      "output": "debian-7.5.0-amd64_{{.Provider}}.box"
+      "output": "debian-7.5.0-amd64-saltonly_{{.Provider}}.box"
     }
   ],
   "provisioners": [
