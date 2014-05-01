@@ -85,7 +85,7 @@
     {
       "type": "vagrant",
       "compression_level": "9",
-      "output": "debian-6.0.9-amd64_{{.Provider}}.box"
+      "output": "debian-6.0.9-amd64-saltonly_{{.Provider}}.box"
     }
   ],
   "provisioners": [
@@ -98,6 +98,7 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
+        "scripts/salt.sh",
         "scripts/vmtools.sh",
         "scripts/cleanup.sh"
       ]
