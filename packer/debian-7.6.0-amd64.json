@@ -1,7 +1,10 @@
 {
   "variables": {
     "PACKER_OS_FLAVOUR": "debian",
+    "PACKER_OS_VERSION": "7.6.0",
+    "PACKER_OS_ARCH": "amd64",
     "PACKER_BOX_NAME": "debian-7.6.0-amd64",
+    "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive",
     "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
     "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "PACKER_VC_TOKEN": "{{env `PACKER_VC_TOKEN`}}",
@@ -34,7 +37,7 @@
       "http_directory": "http",
       "iso_checksum": "f8f0e2ddc5bafd5eb4188cca40a7e0acd12be3bb425ce5ad56734df6e807237e8798e61ac6bb07b02056ef7e7621ceba5f84c00449be449005f9c4e47055333f",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/7.6.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -74,7 +77,7 @@
       "http_directory": "http",
       "iso_checksum": "f8f0e2ddc5bafd5eb4188cca40a7e0acd12be3bb425ce5ad56734df6e807237e8798e61ac6bb07b02056ef7e7621ceba5f84c00449be449005f9c4e47055333f",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/7.6.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -114,7 +117,7 @@
       "http_directory": "http",
       "iso_checksum": "f8f0e2ddc5bafd5eb4188cca40a7e0acd12be3bb425ce5ad56734df6e807237e8798e61ac6bb07b02056ef7e7621ceba5f84c00449be449005f9c4e47055333f",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/7.6.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -143,6 +146,7 @@
         "scripts/vmtools.sh",
         "scripts/ruby.sh",
         "scripts/chef.sh",
+	    "scripts/puppet.sh",
         "scripts/cleanup.sh"
       ]
     }

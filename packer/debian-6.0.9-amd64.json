@@ -4,7 +4,7 @@
     "PACKER_BOX_NAME": "debian-6.0.9-amd64",
     "PACKER_OS_VERSION": "6.0.9",
     "PACKER_OS_ARCH": "amd64",
-    "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive"
+    "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive",
     "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
     "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "PACKER_VC_TOKEN": "{{env `PACKER_VC_TOKEN`}}",
@@ -144,9 +144,9 @@
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
         "scripts/vmtools.sh",
-	    "scripts/ruby.sh",
+        "scripts/ruby.sh",
         "scripts/chef.sh",
-	    "scripts/puppet.sh",
+        "scripts/puppet.sh",
         "scripts/cleanup.sh"
       ]
     }

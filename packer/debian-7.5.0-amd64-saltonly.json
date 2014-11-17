@@ -1,10 +1,14 @@
 {
   "variables": {
-     "PACKER_OS_FLAVOUR": "debian",
-     "PACKER_OS_VERSION": "7.5.0",
-     "PACKER_OS_ARCH": "amd64",
-     "PACKER_BOX_NAME": "debian-7.5.0-amd64",
-     "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive"
+    "PACKER_OS_FLAVOUR": "debian",
+    "PACKER_OS_VERSION": "7.5.0",
+    "PACKER_OS_ARCH": "amd64",
+    "PACKER_BOX_NAME": "debian-7.5.0-amd64",
+    "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive",
+    "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "PACKER_VC_TOKEN": "{{env `PACKER_VC_TOKEN`}}",
+    "PACKER_GH_VERSION": ""
   },
   "builders": [
     {
