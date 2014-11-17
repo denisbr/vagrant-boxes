@@ -1,10 +1,14 @@
 {
   "variables": {
-     "PACKER_OS_FLAVOUR": "debian",
-     "PACKER_OS_VERSION": "6.0.9",
-     "PACKER_OS_ARCH": "amd64",
-     "PACKER_BOX_NAME": "debian-6.0.9-amd64",
-     "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive"
+    "PACKER_OS_FLAVOUR": "debian",
+    "PACKER_BOX_NAME": "debian-6.0.9-amd64",
+    "PACKER_OS_VERSION": "6.0.9",
+    "PACKER_OS_ARCH": "amd64",
+    "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive"
+    "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "PACKER_VC_TOKEN": "{{env `PACKER_VC_TOKEN`}}",
+    "PACKER_GH_VERSION": ""
   },
   "builders": [
     {
@@ -27,6 +31,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
@@ -44,8 +49,6 @@
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
-        [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ],
-        [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ]
       ]
     },
     {
@@ -68,6 +71,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "debian7-64",
       "http_directory": "http",
@@ -129,13 +133,6 @@
       ]
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": "9",
-      "output": "{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box"
-    }
-  ],
   "provisioners": [
     {
       "type": "shell",
@@ -153,5 +150,23 @@
         "scripts/cleanup.sh"
       ]
     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": "9",
+        "output": "../builds/{{.Provider}}/{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box"
+      },
+      {
+        "type": "vagrant-cloud",
+        "box_tag": "ffuenf/{{ user `PACKER_BOX_NAME` }}",
+        "access_token": "{{ user `PACKER_VC_TOKEN` }}",
+        "box_download_url": "https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/{{ user `PACKER_OS_FLAVOUR` }}/{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box",
+        "version": "{{ user `PACKER_GH_VERSION` }}",
+        "version_description": "### tools\n* VMware Tools 9.8.4\n* Parallels Guest Tools\n* VirtualBox Guest Additions 4.3.18\n* Chef 11.16.4-1\n* Ruby 1.9.3.194-8.1+deb7u2\n* Rubygems 2.4.2\n\r### source\n[packer templates on github](https://github.com/ffuenf/vagrant-boxes)",
+        "no_release": true
+      }
+    ]
   ]
 }

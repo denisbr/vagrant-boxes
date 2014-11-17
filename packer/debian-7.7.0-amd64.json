@@ -27,7 +27,6 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "headless": false,
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
@@ -67,7 +66,6 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "headless": false,
       "disk_size": 10140,
       "guest_os_type": "debian7-64",
       "http_directory": "http",
