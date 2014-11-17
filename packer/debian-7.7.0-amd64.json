@@ -1,7 +1,10 @@
 {
   "variables": {
      "PACKER_OS_FLAVOUR": "debian",
-     "PACKER_BOX_NAME": "debian-7.7.0-amd64"
+     "PACKER_OS_VERSION": "7.7.0",
+     "PACKER_OS_ARCH": "amd64",
+     "PACKER_BOX_NAME": "debian-7.7.0-amd64",
+     "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/release"
   },
   "builders": [
     {
@@ -9,7 +12,7 @@
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `PACKER_BOX_NAME` }}/preseed.cfg <wait>",
         "debian-installer=en_US <wait>",
         "auto <wait>",
         "locale=en_US <wait>",
@@ -30,7 +33,7 @@
       "http_directory": "http",
       "iso_checksum": "5cb6e4fea55fbb5173f90c3a545b843c6c193e29c3aa32b3306c9bbdfb1ad6a6a36ae8be50e91af9d03d5f21c472bd05d04d3508172e0b519e76714333c7c74b",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://ftp.acc.umu.se/cdimage/release/7.7.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -49,7 +52,7 @@
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `PACKER_BOX_NAME` }}/preseed.cfg <wait>",
         "debian-installer=en_US <wait>",
         "auto <wait>",
         "locale=en_US <wait>",
@@ -70,7 +73,7 @@
       "http_directory": "http",
       "iso_checksum": "5cb6e4fea55fbb5173f90c3a545b843c6c193e29c3aa32b3306c9bbdfb1ad6a6a36ae8be50e91af9d03d5f21c472bd05d04d3508172e0b519e76714333c7c74b",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/release/7.7.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -110,7 +113,7 @@
       "http_directory": "http",
       "iso_checksum": "5cb6e4fea55fbb5173f90c3a545b843c6c193e29c3aa32b3306c9bbdfb1ad6a6a36ae8be50e91af9d03d5f21c472bd05d04d3508172e0b519e76714333c7c74b",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/release/7.7.0/amd64/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,

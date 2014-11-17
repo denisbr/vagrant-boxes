@@ -1,11 +1,18 @@
 {
+  "variables": {
+     "PACKER_OS_FLAVOUR": "debian",
+     "PACKER_OS_VERSION": "6.0.9",
+     "PACKER_OS_ARCH": "amd64",
+     "PACKER_BOX_NAME": "debian-6.0.9-amd64",
+     "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive"
+  },
   "builders": [
     {
       "type": "virtualbox-iso",
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `PACKER_BOX_NAME` }}/preseed.cfg <wait>",
         "debian-installer=en_US <wait>",
         "auto <wait>",
         "locale=en_US <wait>",
@@ -25,7 +32,7 @@
       "http_directory": "http",
       "iso_checksum": "f28a2b6d65f93acc505f83368392ac3568934462d4cf793e0b34da3374d05cc2cf7744f8e6f2b0f7261bf3150fb879ee2d4a09b1828578667a05fc1db7578b47",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -33,10 +40,10 @@
       "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
-      "vm_name": "debian-6.0.9-amd64",
+      "vm_name": "{{ user `PACKER_BOX_NAME` }}",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "256" ],
-        [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
         [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ],
         [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ]
       ]
@@ -46,7 +53,7 @@
       "boot_command": [
         "<esc><wait>",
         "install <wait>",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `PACKER_BOX_NAME` }}/preseed.cfg <wait>",
         "debian-installer=en_US <wait>",
         "auto <wait>",
         "locale=en_US <wait>",
@@ -66,26 +73,67 @@
       "http_directory": "http",
       "iso_checksum": "f28a2b6d65f93acc505f83368392ac3568934462d4cf793e0b34da3374d05cc2cf7744f8e6f2b0f7261bf3150fb879ee2d4a09b1828578667a05fc1db7578b47",
       "iso_checksum_type": "sha512",
-      "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-netinst.iso",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
       "tools_upload_flavor": "linux",
-      "vm_name": "debian-6.0.9-amd64",
+      "vm_name": "{{ user `PACKER_BOX_NAME` }}",
       "vmx_data": {
-        "memsize": "256",
-        "numvcpus": "1",
+        "memsize": "1024",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "1"
       }
+    },
+    {
+      "type": "parallels-iso",
+      "boot_command": [
+        "<esc><wait>",
+        "install <wait>",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `PACKER_BOX_NAME` }}/preseed.cfg <wait>",
+        "debian-installer=en_US <wait>",
+        "auto <wait>",
+        "locale=en_US <wait>",
+        "kbd-chooser/method=us <wait>",
+        "keyboard-configuration/xkb-keymap=us <wait>",
+        "netcfg/get_hostname={{ .Name }} <wait>",
+        "netcfg/get_domain=vagrantup.com <wait>",
+        "fb=false <wait>",
+        "debconf/frontend=noninteractive <wait>",
+        "console-setup/ask_detect=false <wait>",
+        "console-keymaps-at/keymap=us <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "headless": true,
+      "disk_size": 10140,
+      "guest_os_type": "debian",
+      "http_directory": "http",
+      "iso_checksum": "5cb6e4fea55fbb5173f90c3a545b843c6c193e29c3aa32b3306c9bbdfb1ad6a6a36ae8be50e91af9d03d5f21c472bd05d04d3508172e0b519e76714333c7c74b",
+      "iso_checksum_type": "sha512",
+      "iso_url": "{{ user `PACKER_BASE_URL` }}/{{ user `PACKER_OS_VERSION` }}/{{ user `PACKER_OS_ARCH` }}/iso-cd/{{ user `PACKER_BOX_NAME` }}-netinst.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -hP now",
+      "parallels_tools_flavor": "lin",
+      "parallels_tools_guest_path": "prl-tools-{{.Flavor}}.iso",
+      "prlctl_version_file": ".prlctl_version",
+      "vm_name": "{{ user `PACKER_BOX_NAME` }}",
+      "prlctl": [
+        ["set", "{{.Name}}", "--memsize", "1024"],
+        ["set", "{{.Name}}", "--cpus", "2"]
+      ]
     }
   ],
   "post-processors": [
     {
       "type": "vagrant",
       "compression_level": "9",
-      "output": "debian-6.0.9-amd64-saltonly_{{.Provider}}.box"
+      "output": "{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box"
     }
   ],
   "provisioners": [
@@ -98,8 +146,10 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
-        "scripts/salt.sh",
         "scripts/vmtools.sh",
+	    "scripts/ruby.sh",
+        "scripts/chef.sh",
+	    "scripts/puppet.sh",
         "scripts/cleanup.sh"
       ]
     }
