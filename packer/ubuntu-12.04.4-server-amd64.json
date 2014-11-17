@@ -103,7 +103,7 @@
         "memsize": "1024",
         "numvcpus": "2"
       }
-    }
+    },
     {
       "type": "parallels-iso",
       "boot_command": [

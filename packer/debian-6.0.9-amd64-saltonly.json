@@ -47,7 +47,7 @@
       "vm_name": "{{ user `PACKER_BOX_NAME` }}",
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
-        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ],
         [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ],
         [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ]
       ]
