@@ -1,7 +1,7 @@
 {
   "variables": {
     "PACKER_OS_FLAVOUR": "ubuntu",
-    "PACKER_BOX_NAME": "ubuntu-12.04.4-server-amd64",
+    "PACKER_BOX_NAME": "ubuntu-14.04.1-server-amd64",
     "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
     "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "PACKER_VC_TOKEN": "{{env `PACKER_VC_TOKEN`}}",
@@ -40,9 +40,9 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Ubuntu_64",
       "http_directory": "http",
-      "iso_checksum": "edf1194d7bc99b64dca177deecade9e13f0a8c3339c9fd8832471a2e7ed1dda5",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
       "iso_checksum_type": "sha256",
-      "iso_url": "http://releases.ubuntu.com/13.04/{{ user `PACKER_BOX_NAME` }}.iso",
+      "iso_url": "http://releases.ubuntu.com/14.04.1/{{ user `PACKER_BOX_NAME` }}.iso",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -83,13 +83,13 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
-      "headless": false,
       "disk_size": 10140,
       "guest_os_type": "ubuntu-64",
+      "headless": false,
       "http_directory": "http",
-      "iso_checksum": "edf1194d7bc99b64dca177deecade9e13f0a8c3339c9fd8832471a2e7ed1dda5",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
       "iso_checksum_type": "sha256",
-      "iso_url": "http://releases.ubuntu.com/13.04/{{ user `PACKER_BOX_NAME` }}.iso",
+      "iso_url": "http://releases.ubuntu.com/14.04.1/{{ user `PACKER_BOX_NAME` }}.iso",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -103,7 +103,7 @@
         "memsize": "1024",
         "numvcpus": "2"
       }
-    }
+    },
     {
       "type": "parallels-iso",
       "boot_command": [
@@ -133,11 +133,11 @@
       "boot_wait": "10s",
       "headless": true,
       "disk_size": 10140,
-      "guest_os_type": "debian",
+      "guest_os_type": "ubuntu",
       "http_directory": "http",
-      "iso_checksum": "2bead0f1f451734461ff88f913f4b02ba9e873b15f097a5c231bdb3763ea42e3",
+      "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
       "iso_checksum_type": "sha256",
-      "iso_url": "http://releases.ubuntu.com/13.10/{{ user `PACKER_BOX_NAME` }}.iso",
+      "iso_url": "http://releases.ubuntu.com/14.04.1/{{ user `PACKER_BOX_NAME` }}.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
