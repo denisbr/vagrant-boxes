@@ -150,7 +150,7 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
-        "scripts/salt.sh",
+        "scripts/salt-squeeze.sh",
         "scripts/vmtools.sh",
         "scripts/cleanup.sh"
       ]
