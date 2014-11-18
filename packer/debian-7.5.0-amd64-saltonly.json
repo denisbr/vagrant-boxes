@@ -31,6 +31,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
@@ -70,6 +71,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "debian7-64",
       "http_directory": "http",
@@ -131,13 +133,6 @@
       ]
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": "9",
-      "output": "{{ user `PACKER_BOX_NAME` }}-saltonly_{{.Provider}}.box"
-    }
-  ],
   "provisioners": [
     {
       "type": "shell",
@@ -148,10 +143,19 @@
         "scripts/networking.sh",
         "scripts/sudoers.sh",
         "scripts/vagrant.sh",
-        "scripts/salt.sh",
         "scripts/vmtools.sh",
+        "scripts/salt.sh",
         "scripts/cleanup.sh"
       ]
     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": "9",
+        "output": "../builds/{{.Provider}}/{{ user `PACKER_BOX_NAME` }}-saltonly_{{.Provider}}.box"
+      }
+    ]
   ]
 }
