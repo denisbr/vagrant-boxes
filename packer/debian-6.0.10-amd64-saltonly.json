@@ -1,9 +1,9 @@
 {
   "variables": {
     "PACKER_OS_FLAVOUR": "debian",
+    "PACKER_BOX_NAME": "debian-6.0.10-amd64",
     "PACKER_OS_VERSION": "6.0.10",
     "PACKER_OS_ARCH": "amd64",
-    "PACKER_BOX_NAME": "debian-6.0.10-amd64",
     "PACKER_BASE_URL": "http://ftp.acc.umu.se/cdimage/archive",
     "AWS_ACCESS_KEY_ID": "{{env `AWS_ACCESS_KEY_ID`}}",
     "AWS_SECRET_ACCESS_KEY": "{{env `AWS_SECRET_ACCESS_KEY`}}",
@@ -31,6 +31,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "Debian_64",
       "http_directory": "http",
@@ -47,9 +48,7 @@
       "vm_name": "{{ user `PACKER_BOX_NAME` }}",
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
-        [ "modifyvm", "{{.Name}}", "--cpus", "2" ],
-        [ "modifyvm", "{{.Name}}", "--natdnshostresolver1", "on" ],
-        [ "modifyvm", "{{.Name}}", "--natdnsproxy1", "on" ]
+        [ "modifyvm", "{{.Name}}", "--cpus", "2" ]
       ]
     },
     {
@@ -72,6 +71,7 @@
         "<enter><wait>"
       ],
       "boot_wait": "10s",
+      "headless": true,
       "disk_size": 10140,
       "guest_os_type": "debian7-64",
       "http_directory": "http",
@@ -133,13 +133,6 @@
       ]
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant",
-      "compression_level": "9",
-      "output": "{{ user `PACKER_BOX_NAME` }}-saltonly_{{.Provider}}.box"
-    }
-  ],
   "provisioners": [
     {
       "type": "shell",
@@ -155,5 +148,14 @@
         "scripts/cleanup.sh"
       ]
     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "compression_level": "9",
+        "output": "../builds/{{.Provider}}/{{ user `PACKER_BOX_NAME` }}-saltonly_{{.Provider}}.box"
+      }
+    ]
   ]
 }

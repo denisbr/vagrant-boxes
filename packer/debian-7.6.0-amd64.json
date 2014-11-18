@@ -157,15 +157,6 @@
         "type": "vagrant",
         "compression_level": "9",
         "output": "../builds/{{.Provider}}/{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box"
-      },
-      {
-        "type": "vagrant-cloud",
-        "box_tag": "ffuenf/{{ user `PACKER_BOX_NAME` }}",
-        "access_token": "{{ user `PACKER_VC_TOKEN` }}",
-        "box_download_url": "https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/{{ user `PACKER_OS_FLAVOUR` }}/{{ user `PACKER_BOX_NAME` }}_{{.Provider}}.box",
-        "version": "{{ user `PACKER_GH_VERSION` }}",
-        "version_description": "### tools\n* VMware Tools 9.8.4\n* Parallels Guest Tools\n* VirtualBox Guest Additions 4.3.18\n* Chef 11.16.4-1\n* Ruby 1.9.3.194-8.1+deb7u2\n* Rubygems 2.4.2\n\r### source\n[packer templates on github](https://github.com/ffuenf/vagrant-boxes)",
-        "no_release": true
       }
     ]
   ]
